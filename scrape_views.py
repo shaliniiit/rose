@@ -233,18 +233,7 @@ def cast_scrape(show):
     
 
 
-import requests
-import re
-import matplotlib.pyplot as plt
-import argparse
-import copy
 
-import numpy as np
-import pandas as pd
-
-import plotly.plotly as py
-import plotly.tools as tls
-import plotly.graph_objs as go
 
 def average_plot(views,average,show,decider,loc='lower center'):
 
@@ -323,7 +312,8 @@ def barchart(views,show,decider,loc='upper center'):
             trace0 = go.Bar(x=q, y=views[i])
             trace1 = go.Scatter(x=q, y=views[i])
             layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
-            data.append(trace0,trace1)
+            data.append(trace0)
+            data.append(trace1)
             fig=dict(data=data,layout=layout)
         py.iplot(fig,filename=show+'barchart.png.html')
         
