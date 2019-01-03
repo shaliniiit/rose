@@ -270,7 +270,7 @@ def average_plot(views,average,show,decider,loc='lower center'):
         plt.ylim(small, large)
         plt.show()
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='wd42MsmgJFsrRUlT6d5I')
+        tls.set_credentials_file(username='shalini1', api_key='MIXZf25iA3FerCQQTfGa')
         trace0=go.Scatter(x=q,y=views2)
         trace1=go.Scatter(x=q,y=average2)
         data=[]
@@ -278,7 +278,7 @@ def average_plot(views,average,show,decider,loc='lower center'):
         data.append(trace1)
         layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
         fig=dict(data=data,layout=layout)
-        py.iplot(fig, filename=show+'avgchart.png.html')
+        py.plot(fig, filename=show+'avgchart.png.html',auto_open=True)
 
 
 def barchart(views,show,decider,loc='upper center'):
@@ -307,7 +307,7 @@ def barchart(views,show,decider,loc='upper center'):
         plt.show()
 
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='qYqqGogJeAYJKau96QTK')
+        tls.set_credentials_file(username='shalini1', api_key='MIXZf25iA3FerCQQTfGa')
         for i in range(len(views)):
             trace0 = go.Bar(x=q, y=views[i])
             trace1 = go.Scatter(x=q, y=views[i])
@@ -315,7 +315,12 @@ def barchart(views,show,decider,loc='upper center'):
             data.append(trace0)
             data.append(trace1)
             fig=dict(data=data,layout=layout)
-        py.iplot(fig,filename=show+'barchart.png.html')
+        #py.plot(fig,filename=show+'barchart.png.html',auto_open=True)
+        <div>
+        <a href="https://plot.ly/~shalini1/26/?share_key=Yg8obci3sitawht6IUBbtr" target="_blank" title="Game of Thronesbarchart.png.html" style="display: block; text-align: center;"><img src="https://plot.ly/~shalini1/26.png?share_key=Yg8obci3sitawht6IUBbtr" alt="Game of Thronesbarchart.png.html" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+        <script data-plotly="shalini1:26" sharekey-plotly="Yg8obci3sitawht6IUBbtr" src="https://plot.ly/embed.js" async></script>
+        </div>
+
         
         
     
