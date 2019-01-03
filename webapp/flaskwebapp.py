@@ -79,12 +79,12 @@ def tv_series(show,a,b,c,d):
         data = [float(Decimal("%.2f" % e)) for e in rang]       
         if c=="y":
             scrape_views.barchart(copy.deepcopy(views),show,1)
-            image_file=url_for('static',filename=show+'barchart.png')
-                   
+            #image_file=url_for('static',filename=show+'barchart.png.html')
+            image_file='https://plot.ly/~shalini1/22/imdbviews/'      
         if d=="y":
             scrape_views.average_plot(views, average,show,1)
-            img_file=url_for('static',filename=show+'avgchart.png')
-           
+            #img_file=url_for('static',filename=show+'avgchart.png.html')
+            img_file='https://plot.ly/~shalini1/22/imdbviews/'
            
             
    
