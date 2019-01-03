@@ -315,11 +315,8 @@ def barchart(views,show,decider,loc='upper center'):
             data.append(trace0)
             data.append(trace1)
             fig=dict(data=data,layout=layout)
-        #py.plot(fig,filename=show+'barchart.png.html',auto_open=True)
-        <div>
-        <a href="https://plot.ly/~shalini1/26/?share_key=Yg8obci3sitawht6IUBbtr" target="_blank" title="Game of Thronesbarchart.png.html" style="display: block; text-align: center;"><img src="https://plot.ly/~shalini1/26.png?share_key=Yg8obci3sitawht6IUBbtr" alt="Game of Thronesbarchart.png.html" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
-        <script data-plotly="shalini1:26" sharekey-plotly="Yg8obci3sitawht6IUBbtr" src="https://plot.ly/embed.js" async></script>
-        </div>
+        py.plot(fig,filename=show+'barchart.png.html',auto_open=True)
+        
 
         
         
