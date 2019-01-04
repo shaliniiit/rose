@@ -270,7 +270,7 @@ def average_plot(views,average,show,decider,loc='lower center'):
         plt.ylim(small, large)
         plt.show()
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='MIXZf25iA3FerCQQTfGa')
+        tls.set_credentials_file(username='shalini1', api_key='0duBXtZGI1b2ehhpR8Fe')
         trace0=go.Scatter(x=q,y=views2)
         trace1=go.Scatter(x=q,y=average2)
         data=[]
@@ -307,7 +307,7 @@ def barchart(views,show,decider,loc='upper center'):
         plt.show()
 
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='MIXZf25iA3FerCQQTfGa')
+        tls.set_credentials_file(username='shalini1', api_key='0duBXtZGI1b2ehhpR8Fe')
         for i in range(len(views)):
             trace0 = go.Bar(x=q, y=views[i])
             trace1 = go.Scatter(x=q, y=views[i])
