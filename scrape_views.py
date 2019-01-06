@@ -318,16 +318,34 @@ def barchart(views,show,decider,loc='upper center'):
         
 
 def display(mina, views, decider=1, loc='upper center'):
+    c=0
+    maxep=0
     for i in range(len(views)):
         for j in range(len(views[i])):
             episode = views[i][j]
             if not isinstance(episode, float):
                 views[i][j] = 0 if j==0 else views[i][j]
+            maxep = max(maxep, len(views[i]))
+    l=[0 for i in range(len(views)*maxep*2)]
+    print(l)
     for i in range(len(views)):
         for j in range(len(views[i])):
             if views[i][j]>=float(mina):
                 print("Season  "+str(i)+"   "+"Episode  "+str(j)+"\n")
-    return
+                l[c]=i+1
+                l[c+1]=j+1
+                c+=2
+    q=[ i for i in l if i!=0]
+    p=[ [] for i in range(int(len(q)/2))]
+    i=0
+    c=0
+    while i<len(p):
+        p[i].append(q[c])
+        p[i].append(q[c+1])
+        c+=2
+        i+=1
+    print(q)   
+    return p
 
     
 
@@ -354,6 +372,7 @@ if __name__ == '__main__':
     parser.add_argument('-a', '--avg', action='store_true', help="Display averaged chart or not")
     parser.add_argument('-e', '--epi', action='store', help="Provide Episode name")
     parser.add_argument('-c', '--cast', action='store_true', help="Displays Cast of the Show")
+
     args = parser.parse_args()
 
     imdb, wiki = True, True
