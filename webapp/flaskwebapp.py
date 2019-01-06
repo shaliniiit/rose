@@ -68,7 +68,7 @@ def home():
 
 @app.route("/tvseries/<show>/<requiredviews>/<a>/<b>/<c>/<d>",methods=['GET','POST'])
 def tv_series(show,requiredviews,a,b,c,d):
-    scrape_views.display(requiredviews, copy.deepcopy(views))
+    
     if b=="y":
         rang=[]
         img_file=0
@@ -81,7 +81,8 @@ def tv_series(show,requiredviews,a,b,c,d):
             rang.append(item[0])                
         ["%.2f" % e for e in rang]
         [Decimal("%.2f" % e) for e in rang]# to round off the numbers in the list
-        data = [float(Decimal("%.2f" % e)) for e in rang]       
+        data = [float(Decimal("%.2f" % e)) for e in rang]    
+        scrape_views.display(requiredviews, copy.deepcopy(views))   
         if c=="y":
             scrape_views.barchart(copy.deepcopy(views),show,1)
             #image_file=url_for('static',filename=show+'barchart.png.html')
