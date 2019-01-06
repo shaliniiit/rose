@@ -35,7 +35,7 @@ def home():
         #Access data in the form
         
         show=(request.form.get('name'))
-        requiredviews=int((request.form.get('mins')))
+        requiredviews=float((request.form.get('mins')))
 
          #request.form.get returns true if the toggle switch is pushed to imdb      
         if request.form.get('toggleswitch'):
