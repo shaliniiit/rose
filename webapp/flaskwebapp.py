@@ -59,7 +59,7 @@ def home():
 
         
         
-        return redirect(url_for('tv_series',show=show,a=a,b=b,c=c,d=d))
+        return redirect(url_for('tv_series',show=show,requiredviews=requiredviews,a=a,b=b,c=c,d=d))
   
   
     return render_template("home.html",form = form)
