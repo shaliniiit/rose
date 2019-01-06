@@ -130,6 +130,25 @@ input:checked + .slider:before {
                       </div>
                       <label for="min">Enter Views:</label>
 
+                      <fieldset class="form-group">
+                
+                              <div class="form-group">
+                    
+
+                                    {% if form.min.errors %}
+                                      {{ form.min(class="form-control form-control-lg is-invalid") }}
+                                      <div class="invalid-feedback">
+                                        {% for error in form.min.errors %}
+                                          <span>{{ error }}</span>
+                                        {% endfor %}
+                                      </div>
+                                    {% else %}
+                                      {{ form.min(class="form-control form-control-lg") }}
+                                    {% endif %}
+                              </div>
+                      </fieldset>
+
+
     
            <div class="col-md-2">
     
