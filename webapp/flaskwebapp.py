@@ -64,7 +64,7 @@ def home():
   
     return render_template("home.html",form = form)
 
-@app.route("/tvseries/<show>/<a>/<b>/<c>/<d>",methods=['GET','POST'])
+@app.route("/tvseries/<show>/<requiredviews>/<a>/<b>/<c>/<d>",methods=['GET','POST'])
 def tv_series(show,requiredviews,a,b,c,d):
     scrape_views.display(requiredviews, copy.deepcopy(views))
     if b=="y":
