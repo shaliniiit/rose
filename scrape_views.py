@@ -317,7 +317,7 @@ def barchart(views,show,decider,loc='upper center'):
         py.plot(fig,filename=show+'barchart.png')
         
 
-def display(min, views, decider==1, loc='upper center'):
+def display(min, views, decider=1, loc='upper center'):
 		for i in views:
 				for j in i:
 						if j>=min:
