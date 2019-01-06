@@ -9,7 +9,11 @@ import re
 import matplotlib.pyplot as plt
 import argparse
 import copy
-
+import numpy as np
+import pandas as pd
+import plotly.plotly as py
+import plotly.tools as tls
+import plotly.graph_objs as go
 floating_point = '[-+]?[0-9]*\.?[0-9]*'
 integer = '[0-9]*'
 not_found = 'N/A'
