@@ -33,6 +33,8 @@ def home():
         #Access data in the form
         
         show=(request.form.get('name'))
+        requiredviews=(request.form.get('min'))
+
          #request.form.get returns true if the toggle switch is pushed to imdb      
         if request.form.get('toggleswitch'):
            b="y"
@@ -63,8 +65,8 @@ def home():
     return render_template("home.html",form = form)
 
 @app.route("/tvseries/<show>/<a>/<b>/<c>/<d>",methods=['GET','POST'])
-def tv_series(show,a,b,c,d):
-     
+def tv_series(show,requiredviews,a,b,c,d):
+    scrape_views.display(requiredviews, copy.deepcopy(views))
     if b=="y":
         rang=[]
         img_file=0
