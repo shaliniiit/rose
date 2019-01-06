@@ -128,22 +128,22 @@ input:checked + .slider:before {
                           {{form.avg}} Display averaged chart
                         </label>
                       </div>
-                      <label for="min">Enter Views:</label>
+                      <label for="mins">Enter Views:</label>
 
                       <fieldset class="form-group">
                 
                               <div class="form-group">
                     
 
-                                    {% if form.min.errors %}
-                                      {{ form.min(class="form-control form-control-lg is-invalid") }}
+                                    {% if form.mins.errors %}
+                                      {{ form.mins(class="form-control form-control-lg is-invalid") }}
                                       <div class="invalid-feedback">
-                                        {% for error in form.min.errors %}
+                                        {% for error in form.mins.errors %}
                                           <span>{{ error }}</span>
                                         {% endfor %}
                                       </div>
                                     {% else %}
-                                      {{ form.min(class="form-control form-control-lg") }}
+                                      {{ form.mins(class="form-control form-control-lg") }}
                                     {% endif %}
                               </div>
                       </fieldset>
