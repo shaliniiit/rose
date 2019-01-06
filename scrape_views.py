@@ -277,7 +277,7 @@ def average_plot(views,average,show,decider,loc='lower center'):
         data.append(trace1)
         layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
         fig=dict(data=data,layout=layout)
-        py.iplot(fig, filename=show+'avgchart.png')
+        py.plot(fig, filename=show+'avgchart.png')
 
 
 def barchart(views,show,decider,loc='upper center'):
@@ -311,9 +311,10 @@ def barchart(views,show,decider,loc='upper center'):
             trace0 = go.Bar(x=q, y=views[i])
             trace1 = go.Scatter(x=q, y=views[i])
             layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
-            data.append(trace0,trace1)
+            data.append(trace0)
+            data.append(trace1)
             fig=dict(data=data,layout=layout)
-        py.iplot(fig,filename=show+'barchart.png')
+        py.plot(fig,filename=show+'barchart.png')
         
         
     
