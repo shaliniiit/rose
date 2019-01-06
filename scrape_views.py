@@ -9,11 +9,7 @@ import re
 import matplotlib.pyplot as plt
 import argparse
 import copy
-import numpy as np
-import pandas as pd
-import plotly.plotly as py
-import plotly.tools as tls
-import plotly.graph_objs as go
+
 floating_point = '[-+]?[0-9]*\.?[0-9]*'
 integer = '[0-9]*'
 not_found = 'N/A'
@@ -234,7 +230,6 @@ def cast_scrape(show):
 
 
 
-
 def average_plot(views,average,show,decider,loc='lower center'):
 
     views2, average2 = [], []
@@ -270,16 +265,15 @@ def average_plot(views,average,show,decider,loc='lower center'):
         plt.ylim(small, large)
         plt.show()
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='0duBXtZGI1b2ehhpR8Fe')
+        tls.set_credentials_file(username='shalini1', api_key='wd42MsmgJFsrRUlT6d5I')
         trace0=go.Scatter(x=q,y=views2)
         trace1=go.Scatter(x=q,y=average2)
         data=[]
         data.append(trace0)
         data.append(trace1)
         layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
-        fig=dict(data=data,layout=layout)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-
-        py.plot(fig, filename=show+'avgchart.png.html')
+        fig=dict(data=data,layout=layout)
+        py.iplot(fig, filename=show+'avgchart.png')
 
 
 def barchart(views,show,decider,loc='upper center'):
@@ -308,41 +302,104 @@ def barchart(views,show,decider,loc='upper center'):
         plt.show()
 
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='0duBXtZGI1b2ehhpR8Fe')
+        tls.set_credentials_file(username='shalini1', api_key='qYqqGogJeAYJKau96QTK')
         for i in range(len(views)):
             trace0 = go.Bar(x=q, y=views[i])
             trace1 = go.Scatter(x=q, y=views[i])
             layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
-            data.append(trace0)
-            data.append(trace1)
+            data.append(trace0,trace1)
             fig=dict(data=data,layout=layout)
-            py.plot(fig,filename=show+'barchart.png.html')
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   jk knn kl̥
+        py.iplot(fig,filename=show+'barchart.png')
+        
+        
+    
 
 
+def get_link(show, key, starturl):
+    key = show + key
+    search = 'https://www.google.co.in/search?q=' + key.replace(' ', '+')
+    r = requests.get(search)
 
-     
+    end = '&amp;'
+    start_index = r.text.find(starturl)
+    end_index = start_index + r.text[start_index:].find(end)
+    url = r.text[start_index: end_index]
 
+    return url
+   
 
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--imdb', action='store_true', help="Display only imdb ratings")
+    parser.add_argument('-w', '--wiki', action='store_true', help="Display only wikipedia US TV viewers")
+    parser.add_argument('-s', '--show', action='store', help="Provide show name")
+    parser.add_argument('-b', '--bar', action='store_true', help="Display bar chart or not")
+    parser.add_argument('-a', '--avg', action='store_true', help="Display averaged chart or not")
+    parser.add_argument('-e', '--epi', action='store', help="Provide Episode name")
+    parser.add_argument('-c', '--cast', action='store_true', help="Displays Cast of the Show")
+    args = parser.parse_args()
 
+    imdb, wiki = True, True
+    if args.imdb and args.wiki:
+        pass
+    elif args.imdb:
+        wiki = False
+    elif args.wiki:
+        imdb = False
+    
+    if not args.show:
+        show = input("Enter show name, in best form as possible : ")
+    else:
+        show = args.show
+    # wikiurl = 'https://en.wikipedia.org/wiki/List_of_' + show.replace(' ', '_') + '_episodes'
 
+    if wiki:
+        wikiurl = get_link(show, ' episodes wikipedia', 'https://en.wikipedia.org')
+        print( 'Detected wiki link:', wikiurl)
+        views, average = wikiscrape(wikiurl)
+        # views, average = wikiscrape('https://en.wikipedia.org/wiki/List_of_Two_and_a_Half_Men_episodes')
+        if args.bar:
+            print( 'TV views barchart')
+            barchart(copy.deepcopy(views),show,2)
+        
+        if args.avg:
+            print( 'TV views average plot')
+            average_plot(views, average,show,2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if imdb:
+        imdburl = get_link(show, ' imdb', 'https://www.imdb.com')
+        wikiurl = get_link(show, ' episodes wikipedia','https://en.wikipedia.org')
+        print( 'Detected imdb link:', imdburl)
+        get_seasons_imdb(imdburl)
+        views, average = imdbscrape(imdburl,1)
+        # views, average = imdbscrape('http://www.imdb.com/title/tt0369179/')
+        if args.bar:
+            print( 'IMDB ratings barchart')
+            barchart(copy.deepcopy(views),show,2)
+        
+        if args.avg:
+            print( 'IMDB ratings average plot')
+            average_plot(views, average,show,2)
+            
+    if not args.epi:
+        epi =""
+    else:
+        epi = args.epi
+        epi=epi.upper()
+        season_num=0
+        episode_num=0
+        s_index=epi.index('S')
+        e_index=epi.index('E')
+        try:
+            season_num=int(epi[s_index+1:e_index])
+            episode_num=int(epi[e_index+1:])
+            episode_scrape(show,season_num,episode_num)
+        except ValueError:
+            print('Invalid episode nomenclature')
+            
+    cast=True;
+    if args.cast:
+        l=cast_scrape(show)
+        print("List of Top Casts of the Show : ")
+        for i in range(len(l)):
+            print(i+1,'.',l[i])
