@@ -319,7 +319,7 @@ def barchart(views,show,decider,loc='upper center'):
 
 def display(mina, views, decider=1, loc='upper center'):
 		for j in range(len(views[i])):
-            episode = views[i][j]
+			episode = views[i][j]
             if not isinstance(episode, float):
                 views[i][j] = 0 if j==0 else views[i][j]
 		for i in views:
