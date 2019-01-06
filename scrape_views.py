@@ -315,7 +315,7 @@ def barchart(views,show,decider,loc='upper center'):
             layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
             data.append(trace0)
             data.append(trace1)
-        fig=dict(data=data,layout=layout)
+            fig=dict(data=data,layout=layout)
         py.plot(fig,filename=show+'barchart.png.html')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    jk knn kl̥
 
