@@ -82,7 +82,8 @@ def tv_series(show,requiredviews,a,b,c,d):
         ["%.2f" % e for e in rang]
         [Decimal("%.2f" % e) for e in rang]# to round off the numbers in the list
         data = [float(Decimal("%.2f" % e)) for e in rang]    
-        scrape_views.display(requiredviews, copy.deepcopy(views))   
+        p=scrape_views.display(requiredviews, copy.deepcopy(views)) 
+        print(p)  
         if c=="y":
             scrape_views.barchart(copy.deepcopy(views),show,1)
             #image_file=url_for('static',filename=show+'barchart.png.html')
@@ -96,7 +97,7 @@ def tv_series(show,requiredviews,a,b,c,d):
            
             
    
-    return render_template("tvseries.html",requiredviews=requiredviews,show=show,imdburl=imdburl,k=k,views=views,data=data,c=c,d=d,image_file=image_file,img_file=img_file)
+    return render_template("tvseries.html",p=p,requiredviews=requiredviews,show=show,imdburl=imdburl,k=k,views=views,data=data,c=c,d=d,image_file=image_file,img_file=img_file)
 
  
 if __name__ == "__main__":
