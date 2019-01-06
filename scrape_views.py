@@ -316,7 +316,13 @@ def barchart(views,show,decider,loc='upper center'):
             fig=dict(data=data,layout=layout)
         py.plot(fig,filename=show+'barchart.png')
         
-        
+
+def display(min, views, decider==1, loc='upper center'):
+		for i in views:
+				for j in i:
+						if j>=min:
+							print ("Season  "+str(views.index(i)+1)+"  Episode  "+str(i.index(j)+1)+"\n")
+
     
 
 
