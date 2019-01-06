@@ -18,6 +18,8 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
  
 class Rose(FlaskForm):
     name = TextField('Name:', validators=[DataRequired()])
+    mins = TextField('Name:', validators=[DataRequired()])
+    
     #wiki=BooleanField('Display only wikipedia US TV viewers')
     #imdb=BooleanField('Display only imdb ratings')
     bar=BooleanField('Display bar chart')
@@ -33,7 +35,7 @@ def home():
         #Access data in the form
         
         show=(request.form.get('name'))
-        requiredviews=(request.form.get('min'))
+        requiredviews=int((request.form.get('mins')))
 
          #request.form.get returns true if the toggle switch is pushed to imdb      
         if request.form.get('toggleswitch'):
@@ -93,7 +95,7 @@ def tv_series(show,requiredviews,a,b,c,d):
            
             
    
-    return render_template("tvseries.html",show=show,imdburl=imdburl,k=k,views=views,data=data,c=c,d=d,image_file=image_file,img_file=img_file)
+    return render_template("tvseries.html",requiredviews=requiredviews,show=show,imdburl=imdburl,k=k,views=views,data=data,c=c,d=d,image_file=image_file,img_file=img_file)
 
  
 if __name__ == "__main__":
