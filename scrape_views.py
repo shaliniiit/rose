@@ -316,7 +316,7 @@ def barchart(views,show,decider,loc='upper center'):
             data.append(trace0)
             data.append(trace1)
             fig=dict(data=data,layout=layout)
-        py.plot(fig,filename=show+'barchart.png.html')
+            py.plot(fig,filename=show+'barchart.png.html')
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    jk knn kl̥
 
 
