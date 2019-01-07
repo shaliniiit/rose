@@ -241,13 +241,13 @@ def average_plot(views,average,show,decider,loc='lower center'):
     for each in views:
         print( len(each), )
     print( '')
-    
+    # if average for shows length is less than individual views
     for i in range(len(average)):
         av = average_function(average[i])
         if len(views[i]) > len(average[i]):
             average[i] = average[i] + [av]* ( len(views[i]) - len(average[i]) )
 
-   
+    # remove '-'
     appenditure = min([len(each) for each in views]) + 1
     print(appenditure)
     for each in views:
@@ -256,35 +256,26 @@ def average_plot(views,average,show,decider,loc='lower center'):
         average2 += [j if isinstance(j, float) else 0 for j in each] + [0]* int(appenditure / 2)
     
     x = range( len(views2) )
-    print(x)
-    q=[]
-    for item in range(len(views)+1):
-        q.append(item)
-    if decider==2:
-        plt.plot(x, views2, label='Views')
-        plt.plot(x, average2, label='Average')
-        plt.legend(loc=loc, ncol=4)
-        small = int( min([i for i in views2 if i!=0]) ) - 1
-        large = int( max(views2) ) + 1
-        plt.ylim(small, large)
-        plt.show()
+    plt.plot(x, views2, label='Views')
+    plt.plot(x, average2, label='Average')
+    
+    plt.legend(loc=loc, ncol=4)
+    small = int( min([i for i in views2 if i!=0]) ) - 1
+    large = int( max(views2) ) + 1
+    # Relative or not ?    
+    # print( small, large)
+    plt.ylim(small, large)
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='BwREnjJozY7Tcdc0YTVy')
-        trace0=go.Scatter(x=q,y=views2)
-        trace1=go.Scatter(x=q,y=average2)
-        data=[]
-        data.append(trace0)
-        data.append(trace1)
-        layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
-        fig=dict(data=data,layout=layout)
-        py.plot(fig, filename=show+'avgchart.png')
+       plt.savefig('static/'+show+'avgchart.png')
+    if decider==2:
+       plt.show()
 
 
 def barchart(views,show,decider,loc='upper center'):
     maxep = 0
-    data=[]
+    # remove '-' with last episode's ratings
     for i in range(len(views)):
-       
+        # v[i] = [j if isinstance(j, float) else 0 for j in views[i]]
         for j in range(len(views[i])):
             episode = views[i][j]
             if not isinstance(episode, float):
@@ -293,28 +284,22 @@ def barchart(views,show,decider,loc='upper center'):
         maxep = max(maxep, len(views[i]))
     
     xaxis = range(maxep)
-    q=[]
-    for item in range(maxep+1):
-        q.append(item)
-    print(q)
+    # if number of episodes is not uniform across seasons, make sure
+    # to repeat last episode's ratings through the seasons
     for i in range(len(views)):
         views[i] += [views[i][-1]]* ( maxep - len(views[i]) )
-    if decider==2:
-        for i in range(len(views)):
-            plt.plot(xaxis, views[i], label=str(i+1))
-        plt.legend(loc=loc, ncol = 4)
-        plt.show()
-
+    
+    for i in range(len(views)):
+        plt.plot(xaxis, views[i], label=str(i+1))
+    
+    plt.legend(loc=loc, ncol = 4)
     if decider==1:
-        tls.set_credentials_file(username='shalini1', api_key='BwREnjJozY7Tcdc0YTVy')
-        for i in range(len(views)):
-            trace0 = go.Bar(x=q, y=views[i])
-            trace1 = go.Scatter(x=q, y=views[i])
-            layout=dict(title="IMDB/views", xaxis=dict(title="Episodes"),yaxis=dict(title="No of Views"))
-            data.append(trace0)
-            data.append(trace1)
-            fig=dict(data=data,layout=layout)
-        py.plot(fig,filename=show+'barchart.png')
+       plt.savefig('static/'+show+'barchart.png')
+    if decider==2:
+       plt.show()
+
+
+
         
 
 def display(mina, views, decider=1, loc='upper center'):
