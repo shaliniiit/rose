@@ -86,13 +86,13 @@ def tv_series(show,requiredviews,a,b,c,d):
         print(p)  
         if c=="y":
             scrape_views.barchart(copy.deepcopy(views),show,1)
-            #image_file=url_for('static',filename=show+'barchart.png.html')
-            image_file="https://cdn.plot.ly/plotly-latest.min.js"
+            image_file=url_for('static',filename=show+'barchart.png.html')
+            
              
         if d=="y":
             scrape_views.average_plot(views, average,show,1)
-            #img_file=url_for('static',filename=show+'avgchart.png.html')
-            "https://cdn.plot.ly/plotly-latest.min.js"
+            img_file=url_for('static',filename=show+'avgchart.png.html')
+            
             
            
             
