@@ -86,12 +86,12 @@ def tv_series(show,requiredviews,a,b,c,d):
         print(p)  
         if c=="y":
             scrape_views.barchart(copy.deepcopy(views),show,1)
-            image_file=url_for('static',filename=show+'barchart.png.html')
+            image_file=url_for('static',filename=show+'barchart.png')
             
              
         if d=="y":
             scrape_views.average_plot(views, average,show,1)
-            img_file=url_for('static',filename=show+'avgchart.png.html')
+            img_file=url_for('static',filename=show+'avgchart.png')
             
             
            
